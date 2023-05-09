@@ -3,7 +3,7 @@ import React from 'react';
 type Props = {
   text: string;
   onClick: () => void;
-  size: 'small' | 'big';
+  size?: 'small' | 'big';
 };
 export default function ColorButton({ text, onClick, size = 'small' }: Props) {
   return (
@@ -13,7 +13,9 @@ export default function ColorButton({ text, onClick, size = 'small' }: Props) {
       }`}
     >
       <button
-        className ={`bg-white rounded-sm text-base  hover:opacity-90 transition-opacity ${size === 'big' ? 'p-4 text-2xl' : 'p-[0.3rem] text-base'}`}
+        className={`bg-white rounded-sm text-base  hover:opacity-90 transition-opacity ${
+          size === 'big' ? 'p-4 text-2xl' : 'p-[0.3rem] text-base'
+        }`}
         onClick={onClick}
       >
         {text}

@@ -9,9 +9,21 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_SECRET || '',
     }),
   ],
+  callbacks: {
+    async session({ session}) {
+      const user = session?.user;
+      if (user) {
+        session.user = {
+          ...user,
+          username: user.email?.split('@')[0] || '',
+        }
+      }
+      return session;
+    },
+  },
   pages: {
     signIn: '/auth/signin',
-  }
+  },
 };
 
 const handler = NextAuth(authOptions);
